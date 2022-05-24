@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".dataUtils.FlowerInfoPage">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="12dp"
+        android:layout_marginBottom="15dp"
+        android:layoutDirection="ltr">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:id="@+id/iv_flower_img"
+                android:src="@drawable/ic_launcher_foreground"
+                android:contentDescription="@string/flower_image" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/NameTitle"
+                    android:paddingLeft="15dp"
+                    android:id="@+id/tv_flower_name" />
+
+                <!-- Floating action button that launches AddTaskActivity when clicked -->
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab"
+                    style="@style/AccentButtonStyle"
+                    app:tint="@android:color/white"
+                    app:maxImageSize="56dp"
+                    app:useCompatPadding="true"
+                    android:layout_gravity="bottom|right"
+                    app:srcCompat="@mipmap/ic_save_foreground" />
+                <!--                    -->
+                <!--        android:layout_width="wrap_content"-->
+                <!--        android:layout_height="wrap_content"-->
+                <!--        android:layout_margin="10dp"-->
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            style="@style/TitleStyle"
+            android:text="@string/description"/>
+
+        <TextView
+            style="@style/PlainTextStyle"
+            android:ellipsize="end"
+            android:id="@+id/tv_flower_desc"/>
+
+        <TextView
+            style="@style/TitleStyle"
+            android:id="@+id/tv_water_title"
+            android:text="@string/water" />
+
+        <TextView
+            style="@style/PlainTextStyle"
+            android:id="@+id/tv_water_info" />
+
+        <TextView
+            style="@style/TitleStyle"
+            android:id="@+id/tv_sun_title"
+            android:text="@string/sun" />
+
+        <TextView
+            style="@style/PlainTextStyle"
+            android:id="@+id/tv_sun_info" />
+
+        <TextView
+            style="@style/TitleStyle"
+            android:id="@+id/tv_soil_title"
+            android:text="@string/soil" />
+
+        <TextView
+            style="@style/PlainTextStyle"
+            android:id="@+id/tv_soil_info" />
+
+
+    </LinearLayout>
+</ScrollView>

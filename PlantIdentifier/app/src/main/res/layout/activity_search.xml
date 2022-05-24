@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layoutDirection="ltr"
+    android:orientation="vertical"
+    tools:context=".SearchActivity">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_search_activity"
+        android:paddingTop="50dp"
+        android:hint="@string/tv_search_title"
+        android:textSize="22sp"
+        android:layout_gravity="center"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="Search!"
+        android:layout_gravity="center"
+        android:id="@+id/btn_search_activity"
+        android:onClick="onClickSearch" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_gravity="center"
+        android:id="@+id/tv_result_activity_search" />
+
+
+</LinearLayout>

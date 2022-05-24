@@ -1,0 +1,62 @@
+<resources>
+
+    <!--  MainActivity  -->
+    <string name="app_name">Plant Identifier</string>
+    <string name="btn_main_camera">Camera</string>
+    <string name="btn_main_my_plants">Saved</string>
+    <string name="btn_main_search">Search</string>
+    <string name="btn_main_history">History</string>
+    <!--    -->
+
+    <!--  SearchActivity  -->
+    <string name="tv_search_title">Type plant name</string>
+    <string name="err_server">Problem with connection, Running on offline model, please retry for better results</string>
+    <string name="err_no_flower">"No such flower in database :("</string>
+    <!--    -->
+
+    <!--  CameraActivity  -->
+    <string name="btn_take_photo">Camera</string>
+    <string name="btn_choose_from_gallery">Gallery</string>
+    <string name="btn_upload_photo">Identify This Plant!</string>
+    <string name="err_camera">Problem with camera</string>
+    <string name="err_gallery_save">Problem with saving to gallery</string>
+    <string name="err_gallery_access">Problem with access to gallery</string>
+    <string name="err_no_photo_selected">Please upload a photo</string>
+    <string name="upload_image_default">Upload your image here\n to identify</string>
+
+    <!--  Database  -->
+    <string name="error_message">An error has occurred. Please try again by clicking REFRESH</string>
+    <string name="update_button">Update</string>
+    <string name="key">key</string>
+    <string name="err_name">Please specify a name</string>
+    <string name="err_location">Please specify a location</string>
+    <string name="flower_image">flower image</string>
+    <string name="water">Water</string>
+    <string name="sun">Sun</string>
+    <string name="soil">Soil</string>
+    <string name="description">Description</string>
+
+    <!-- Notifications -->
+    <string name="create_notifications">created watering notifications!</string>
+    <string name="remove_notifications">removed watering notifications!</string>
+    <string name="logo_str">Discover Nature</string>
+    <string name="logo">logo</string>
+    <string name="show_on_map">show on map</string>
+
+    <!-- About -->
+    <string name="about_title">About</string>
+    <string name="about_des">This Application can be used to identify plants from pictures,
+        save the plants and get notifications to remind you to tend to them, also you can see on the map
+        where you took a picture of the plant.
+        \nThis application was made by two HUJI students Gal, and Erez</string>
+
+    <!-- Contact Us -->
+    <string name="contact_title">Contact Us</string>
+    <string name="contact_des">Hello Dear user, got feed back? want to request a feature? found a bug? \n
+        Please contact us and let us know about it.
+    </string>
+    <string name="email">erez.rachamim@huji.ac.il</string>
+
+
+
+</resources>

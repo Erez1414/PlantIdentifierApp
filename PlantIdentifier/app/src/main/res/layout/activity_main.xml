@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layoutDirection="ltr"
+    tools:context=".MainActivity">
+
+    <ImageView
+        style="@style/ImageViewStyle"
+        android:src="@mipmap/ic_logo_foreground"
+        android:contentDescription="@string/logo" />
+
+    <TextView
+        style="@style/CenteredTitleStyle"
+        android:text="@string/logo_str" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="22dp">
+
+        <LinearLayout
+            android:id="@+id/main_sub_linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btn_camera"
+                style="@style/BigButtonsStyle"
+                android:drawableTop="@drawable/ic_camera_foreground"
+                android:onClick="onCamera"
+                android:text="@string/btn_main_camera" />
+
+            <Button
+                android:id="@+id/btn_search"
+                style="@style/BigButtonsStyle"
+                android:drawableTop="@drawable/ic_search_foreground"
+                android:onClick="onSearch"
+                android:text="@string/btn_main_search" />
+
+        </LinearLayout>
+        <Button
+            android:id="@+id/btn_my_plants"
+            style="@style/BigButtonsStyle"
+            android:layout_below="@id/main_sub_linear"
+            android:layout_centerHorizontal="true"
+            android:drawableTop="@drawable/ic_my_plants_foreground"
+            android:text="@string/btn_main_my_plants"
+            android:onClick="onMyPlant" />
+
+    </RelativeLayout>
+
+</LinearLayout>

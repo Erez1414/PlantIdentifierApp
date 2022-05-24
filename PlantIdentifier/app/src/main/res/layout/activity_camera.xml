@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layoutDirection="ltr"
+    tools:context=".CameraActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:padding="25dp">
+
+
+        <Button
+            style="@style/SmallButtonStyle"
+            android:id="@+id/btn_take_photo"
+            android:drawableTop="@mipmap/ic_take_picture_foreground"
+            android:onClick="onClickTakePhoto" />
+
+        <Button
+            android:id="@+id/btn_choose_from_gallery"
+            style="@style/SmallButtonStyle"
+            android:drawableTop="@mipmap/ic_gallery_foreground"
+            android:onClick="onClickChooseFromGallery" />
+    </LinearLayout>
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="30dp"
+        android:id="@+id/iv_photo_preview"
+        android:src="@mipmap/ic_flower_foreground" />
+
+    <TextView
+        style="@style/TextTransparent"
+        android:id="@+id/tv_camera_instructions"
+        android:text="@string/upload_image_default"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/btn_upload_photo"
+        android:text="@string/btn_upload_photo"
+        android:textColor="@color/colorPrimaryDark"
+        android:onClick="onClickUploadPhoto"
+        android:drawableLeft="@mipmap/ic_search_small_foreground" />
+
+
+</LinearLayout>
