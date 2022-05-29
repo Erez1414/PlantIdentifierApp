@@ -184,12 +184,12 @@ public class MyFlowerInfo extends AppCompatActivity{
         String notificationContent = name + " (" + type + ") " + mTvLoc.getText();
 
         //this part was supposed to make the notifications survive a restart of the device
-//        Context context = this;
-//        ComponentName receiver = new ComponentName(context, NotificationReceiver.class);
-//        PackageManager pm = context.getPackageManager();
-//        pm.setComponentEnabledSetting(receiver,
-//                PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
-//                PackageManager.DONT_KILL_APP);
+        Context context = this;
+        ComponentName receiver = new ComponentName(context, NotificationReceiver.class);
+        PackageManager pm = context.getPackageManager();
+        pm.setComponentEnabledSetting(receiver,
+                PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                PackageManager.DONT_KILL_APP);
 
         scheduleNotification(getNotification(notificationContent));
         Toast.makeText(this, "notifications created successfully", Toast.LENGTH_LONG).show();
