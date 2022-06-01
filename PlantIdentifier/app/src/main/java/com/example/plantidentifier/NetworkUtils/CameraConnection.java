@@ -44,6 +44,7 @@ public class CameraConnection implements ClientConnection{
     private final Uri mImgUri;
     private boolean success;
     private boolean failed;
+    private boolean failed_backup;
     private boolean finished;
     private JSONObject res;
     Context mContext;
@@ -57,9 +58,17 @@ public class CameraConnection implements ClientConnection{
         success = false;
         finished = false;
         failed = false;
-        failed = testConnection(context);
+        failed_backup = false;
+        Log.d(TAG,"start test");
+        failed = testConnection(context, ipOnly);
+        Log.d(TAG,"finish test");
         if(failed){
-            finished = true;
+            Log.d(TAG,"start test b");
+            failed_backup = testConnection(context, ipOnlyBackup);
+            Log.d(TAG,"finish test b");
+            if(failed_backup) {
+                finished = true;
+            }
         }
     }
 
@@ -79,7 +88,7 @@ public class CameraConnection implements ClientConnection{
      * @param context
      * @return TRUE if connection CANNOT BE MADE, else false
      */
-    private boolean testConnection(Context context){
+    private boolean testConnection(Context context, String ipOnly){
         if(!isOnline(context)){
             return true;
         }
@@ -96,7 +105,7 @@ public class CameraConnection implements ClientConnection{
             return false;
         } catch(Exception e) {
             // Handle exception
-            return false;
+            return true;
         }
     }
 
@@ -117,10 +126,15 @@ public class CameraConnection implements ClientConnection{
      */
     @Override
     public void connect(){
-        if (failed){
-            return; // no need as it wont work anyway!
-        }
         String postUrl = ipString + "recognize/";
+        if (failed){
+            if(failed_backup) {
+                return; // no need as it wont work anyway!
+            }
+            postUrl = ipStringBackup + "recognize/";
+        }
+
+
 
         MultipartBody.Builder multipartBodyBuilder = new MultipartBody.Builder().setType(MultipartBody.FORM);
         BitmapFactory.Options options = new BitmapFactory.Options();
