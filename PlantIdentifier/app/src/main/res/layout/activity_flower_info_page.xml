@@ -36,6 +36,7 @@
 
                 <TextView
                     style="@style/NameTitle"
+                    android:textSize="34dp"
                     android:paddingLeft="15dp"
                     android:id="@+id/tv_flower_name" />
 
@@ -62,7 +63,6 @@
 
         <TextView
             style="@style/PlainTextStyle"
-            android:ellipsize="end"
             android:id="@+id/tv_flower_desc"/>
 
         <TextView

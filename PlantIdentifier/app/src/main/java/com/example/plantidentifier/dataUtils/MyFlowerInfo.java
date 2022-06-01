@@ -119,15 +119,15 @@ public class MyFlowerInfo extends AppCompatActivity{
     private void fillInfo(){
         mIvFlower.setImageBitmap(Bitmap.createScaledBitmap(plantEntry.getImg(), 250, 250, true));
         name = plantEntry.getName();
-        type = plantEntry.getType();
+        type = plantEntry.getType().substring(0, 1).toUpperCase() + plantEntry.getType().substring(1);
         mTvName.setText(name);
         mTvType.setText(type);
         String loc = "Located at: " + plantEntry.getLoc();
         mTvLoc.setText(loc);
-        mTvDesc.setText(plantEntry.getDesc());
-        mTvWater.setText(plantEntry.getWater());
-        mTvSun.setText(plantEntry.getSun());
-        mTvSoil.setText(plantEntry.getSoil());
+        mTvDesc.setText(plantEntry.getDesc().trim());
+        mTvWater.setText(plantEntry.getWater().trim());
+        mTvSun.setText(plantEntry.getSun().trim());
+        mTvSoil.setText(plantEntry.getSoil().trim());
         mAlarm = plantEntry.getAlarm();
 
         if (plantEntry.isNotification()){
@@ -164,10 +164,10 @@ public class MyFlowerInfo extends AppCompatActivity{
         int randomMin = ThreadLocalRandom.current().nextInt(0, 60);
         calendar.set(Calendar.HOUR_OF_DAY, 9);
         calendar.set(Calendar.MINUTE, randomMin);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                interval, pendingIntent);
-//        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+//        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
 //                interval, pendingIntent);
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                interval, pendingIntent);
     }
 
     private Notification getNotification (String content) {

@@ -129,10 +129,10 @@ public class FlowerInfoPage extends AppCompatActivity {
             String nametype = plantInfo.getString("type").substring(0, 1).toUpperCase() +
                     plantInfo.getString("type").substring(1);
             mTvName.setText(nametype);
-            mTvDesc.setText(plantInfo.getString("desc")); //.replace(" ", "\u00A0"));
-            mTvWater.setText(plantInfo.getString("water"));
-            mTvSun.setText(plantInfo.getString("sun"));
-            mTvSoil.setText(plantInfo.getString("soil"));
+            mTvDesc.setText(plantInfo.getString("desc").trim()); //.replace(" ", "\u00A0"));
+            mTvWater.setText(plantInfo.getString("water").trim());
+            mTvSun.setText(plantInfo.getString("sun").trim());
+            mTvSoil.setText(plantInfo.getString("soil").trim());
         } catch (JSONException e){
             Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
         }

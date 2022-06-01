@@ -105,7 +105,8 @@ public class CameraConnection implements ClientConnection{
             return false;
         } catch(Exception e) {
             // Handle exception
-            return true;
+            Log.d(TAG, "!!!!!!!!!!" + e.toString());
+            return false;
         }
     }
 
