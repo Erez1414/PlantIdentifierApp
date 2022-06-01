@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.provider.MediaStore;
 import android.system.Os;
 import android.util.Log;
@@ -47,6 +48,8 @@ public class CameraConnection implements ClientConnection{
     private boolean failed_backup;
     private boolean finished;
     private JSONObject res;
+    private volatile boolean innerFinish;
+    private boolean curRes;
     Context mContext;
 
     private static final String TAG = "PhotoConnectionDebug";
@@ -58,6 +61,8 @@ public class CameraConnection implements ClientConnection{
         success = false;
         finished = false;
         failed = false;
+        innerFinish = false;
+        curRes = false;
         failed_backup = false;
         Log.d(TAG,"start test");
         failed = testConnection(context, ipOnly);
@@ -89,25 +94,44 @@ public class CameraConnection implements ClientConnection{
      * @return TRUE if connection CANNOT BE MADE, else false
      */
     private boolean testConnection(Context context, String ipOnly){
+        innerFinish = false;
         if(!isOnline(context)){
             return true;
         }
-        try {
-            SocketAddress sockaddr = new InetSocketAddress(ipOnly, port);
-            // Create an unbound socket
-            Socket sock = new Socket();
+//        try {
+            new Thread( new Runnable() {
+                @Override
+                public void run() {
+                    SocketAddress sockaddr = new InetSocketAddress(ipOnly, port);
+                    // Create an unbound socket
+                    Socket sock = new Socket();
 
-            // This method will block no more than timeoutMs.
-            // If the timeout occurs, SocketTimeoutException is thrown.
-            int timeoutMs = 2000;   // 2 seconds
-            sock.connect(sockaddr, timeoutMs);
-            sock.close();
-            return false;
-        } catch(Exception e) {
-            // Handle exception
-            Log.d(TAG, "!!!!!!!!!!" + e.toString());
-            return false;
-        }
+                    // This method will block no more than timeoutMs.
+                    // If the timeout occurs, SocketTimeoutException is thrown.
+
+                    int timeoutMs = 2000;   // 2 seconds
+                    try {
+                        sock.connect(sockaddr, timeoutMs);
+                        sock.close();
+                        curRes = false;
+                        innerFinish = true;
+                    } catch (IOException e) {
+                        curRes = true;
+                        innerFinish = true;
+
+                    }
+                }
+            }).start();
+
+            while (!innerFinish) {
+            }
+//            innerFinish = false;
+            return curRes;
+//        } catch(Exception e) {
+//            // Handle exception
+//            Log.d(TAG, "!!!!!!!!!!" + e.toString());
+//            return false;
+
     }
 
     public JSONObject getRes(){
