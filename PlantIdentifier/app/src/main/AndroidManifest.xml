@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.plantidentifier">
+    package="com.final_project.plantidentifier">
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -53,30 +53,30 @@
         android:theme="@style/Theme.PlantIdentifier"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ContactActivity"
+            android:name="com.final_project.plantidentifier.ContactActivity"
             android:exported="true" />
         <activity
-            android:name=".AboutActivity"
+            android:name="com.final_project.plantidentifier.AboutActivity"
             android:exported="true" />
         <activity
-            android:name=".dataUtils.MyFlowerInfo"
+            android:name="com.final_project.plantidentifier.dataUtils.MyFlowerInfo"
             android:exported="true"
-            android:parentActivityName=".MyPlantsActivity" />
+            android:parentActivityName="com.final_project.plantidentifier.MyPlantsActivity" />
         <activity
-            android:name=".dataUtils.AddPlantActivity"
+            android:name="com.final_project.plantidentifier.dataUtils.AddPlantActivity"
             android:exported="false" />
         <activity
-            android:name=".CameraActivity"
+            android:name="com.final_project.plantidentifier.CameraActivity"
             android:exported="true"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName="com.final_project.plantidentifier.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value="com.final_project.plantidentifier.MainActivity" />
         </activity>
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.android.fileprovider"
+            android:authorities="com.final_project.android.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -85,31 +85,31 @@
         </provider>
 
         <activity
-            android:name=".SearchActivity"
+            android:name="com.final_project.plantidentifier.SearchActivity"
             android:exported="true"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName="com.final_project.plantidentifier.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value="com.final_project.plantidentifier.MainActivity" />
         </activity>
         <activity
-            android:name=".dataUtils.FlowerInfoPage"
+            android:name="com.final_project.plantidentifier.dataUtils.FlowerInfoPage"
             android:exported="true"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName="com.final_project.plantidentifier.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value="com.final_project.plantidentifier.MainActivity" />
         </activity>
         <activity
-            android:name=".MyPlantsActivity"
+            android:name="com.final_project.plantidentifier.MyPlantsActivity"
             android:exported="true"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName="com.final_project.plantidentifier.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value="com.final_project.plantidentifier.MainActivity" />
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.final_project.plantidentifier.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -119,7 +119,7 @@
         </activity>
 
         <receiver
-            android:name=".utils.NotificationReceiver"
+            android:name="com.final_project.plantidentifier.utils.NotificationReceiver"
             android:enabled="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
