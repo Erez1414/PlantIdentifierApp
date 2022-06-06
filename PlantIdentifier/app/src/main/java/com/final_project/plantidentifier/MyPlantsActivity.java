@@ -16,6 +16,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.final_project.plantidentifier.data.AppDatabase;
 import com.final_project.plantidentifier.data.PlantEntry;
@@ -34,6 +37,7 @@ public class MyPlantsActivity extends AppCompatActivity implements FlowerAdapter
     private RecyclerView mRecyclerView;
 
     private FlowerAdapter mFlowerAdapter;
+    private TextView mTvNoSaved;
 
     private AppDatabase mDb;
 
@@ -43,6 +47,9 @@ public class MyPlantsActivity extends AppCompatActivity implements FlowerAdapter
         setContentView(R.layout.activity_my_plants);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview_flower);
+        mTvNoSaved = (TextView) findViewById(R.id.tv_no_saved_flowers);
+
+        mTvNoSaved.setVisibility(View.GONE);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -86,6 +93,9 @@ public class MyPlantsActivity extends AppCompatActivity implements FlowerAdapter
         }).attachToRecyclerView(mRecyclerView);
 
         mDb = AppDatabase.getInstance(getApplicationContext());
+        noPlantsOnList();
+        if (this.getSharedPreferences("com.final_project.plantidentifier", Context.MODE_PRIVATE).getBoolean("tutorial", true))
+            Toast.makeText(this, R.string.delete_saved_flower, Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -105,6 +115,11 @@ public class MyPlantsActivity extends AppCompatActivity implements FlowerAdapter
         startActivity(intent);
     }
 
+    public void onPreference(MenuItem menuItem){
+        Intent intent = new Intent(this, PreferenceActivity.class);
+        startActivity(intent);
+    }
+
     /*
     every time we delete an plant from my plants, we remove the notification it had
      */
@@ -120,6 +135,12 @@ public class MyPlantsActivity extends AppCompatActivity implements FlowerAdapter
         am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pi);
         am.cancel(pi);
         Log.d(TAG, "removed item with notifications");
+    }
+
+    private void noPlantsOnList(){
+        if (mDb.plantDao().loadAllTasks().isEmpty()){
+            mTvNoSaved.setVisibility(View.VISIBLE);
+        }
     }
 
     private void retrievePlants(){
@@ -150,6 +171,13 @@ public class MyPlantsActivity extends AppCompatActivity implements FlowerAdapter
     @Override
     protected void onResume() {
         super.onResume();
+        noPlantsOnList();
         retrievePlants();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }

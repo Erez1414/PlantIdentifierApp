@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".PreferenceActivity">
+
+    <TextView
+        style="@style/CenteredTitleStyle"
+        android:text="@string/preferences"
+        android:padding="30dp"/>
+
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/s_tutorial_pref"
+        android:text="@string/show_instructions"
+        android:paddingLeft="40dp"
+        android:layout_gravity="left"
+        android:textSize="20dp"
+        android:onClick="onTutorialModeChange"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+
+</LinearLayout>

@@ -28,6 +28,7 @@ import android.widget.Toast;
 import com.final_project.plantidentifier.AboutActivity;
 import com.final_project.plantidentifier.ContactActivity;
 import com.final_project.plantidentifier.MyPlantsActivity;
+import com.final_project.plantidentifier.PreferenceActivity;
 import com.final_project.plantidentifier.R;
 import com.final_project.plantidentifier.data.AppDatabase;
 import com.final_project.plantidentifier.data.PlantEntry;
@@ -86,6 +87,9 @@ public class MyFlowerInfo extends AppCompatActivity{
         //init thr database object
         mDb = AppDatabase.getInstance(getApplicationContext());
         showFlower();
+        if (this.getSharedPreferences("com.final_project.plantidentifier", Context.MODE_PRIVATE).getBoolean("tutorial", true))
+            Toast.makeText(this, R.string.notification_instruction, Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
@@ -105,8 +109,13 @@ public class MyFlowerInfo extends AppCompatActivity{
         startActivity(intent);
     }
 
+    public void onPreference(MenuItem menuItem){
+        Intent intent = new Intent(this, PreferenceActivity.class);
+        startActivity(intent);
+    }
+
     private void fillInfo(){
-        mIvFlower.setImageBitmap(Bitmap.createScaledBitmap(plantEntry.getImg(), 250, 250, true));
+        mIvFlower.setImageBitmap(Bitmap.createScaledBitmap(plantEntry.getImg(), 450, 450, true));
         name = plantEntry.getName();
         type = plantEntry.getType().substring(0, 1).toUpperCase() + plantEntry.getType().substring(1);
         mTvName.setText(name);
@@ -155,7 +164,10 @@ public class MyFlowerInfo extends AppCompatActivity{
         calendar.set(Calendar.MINUTE, randomMin);
 //        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
 //                interval, pendingIntent);
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+//        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+//                interval, pendingIntent);
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, Calendar.getInstance().getTimeInMillis()
+                        + AlarmManager.INTERVAL_FIFTEEN_MINUTES / 15,
                 interval, pendingIntent);
     }
 

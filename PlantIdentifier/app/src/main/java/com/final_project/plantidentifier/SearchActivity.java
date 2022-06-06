@@ -65,6 +65,11 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
         startActivity(intent);
     }
 
+    public void onPreference(MenuItem menuItem){
+        Intent intent = new Intent(this, PreferenceActivity.class);
+        startActivity(intent);
+    }
+
     public void onClickSearch(View v) {
         mCurData = null;
         if(mEt.getText().toString().matches("")){
@@ -139,5 +144,11 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
          * We aren't using this method in our example application, but we are required to Override
          * it to implement the LoaderCallbacks<String> interface
          */
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }

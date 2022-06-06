@@ -38,7 +38,7 @@
         android:layout_marginBottom="30dp"
         android:layout_marginTop="30dp"
         android:id="@+id/iv_photo_preview"
-        android:src="@mipmap/ic_flower_foreground" />
+        android:src="@mipmap/ic_gray_flower_foreground" />
 
     <TextView
         style="@style/TextTransparent"

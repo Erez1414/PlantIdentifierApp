@@ -8,6 +8,12 @@
     android:layoutDirection="ltr"
     tools:context=".MyPlantsActivity">
 
+    <TextView
+        style="@style/TextTransparent"
+        android:id="@+id/tv_no_saved_flowers"
+        android:padding="150dp"
+        android:text="@string/no_saved_flower"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

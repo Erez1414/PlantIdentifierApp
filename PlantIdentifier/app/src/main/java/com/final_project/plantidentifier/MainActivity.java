@@ -2,7 +2,9 @@ package com.final_project.plantidentifier;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btn_camera;
     private Button btn_myPlants;
     private Button btn_search;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +37,11 @@ public class MainActivity extends AppCompatActivity {
     public void onCamera(View v){
         Intent intent = new Intent(this, CameraActivity.class);
         startActivity(intent);
+    }
 
+    public void onPreference(MenuItem menuItem){
+        Intent intent = new Intent(this, PreferenceActivity.class);
+        startActivity(intent);
     }
 
     public void onSearch(View v){

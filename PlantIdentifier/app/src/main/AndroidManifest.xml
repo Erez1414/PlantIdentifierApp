@@ -13,7 +13,6 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission. ACCESS_COARSE_LOCATION" />
 
-
     <queries>
 
         <!-- Browser -->
@@ -53,22 +52,25 @@
         android:theme="@style/Theme.PlantIdentifier"
         android:usesCleartextTraffic="true">
         <activity
-            android:name="com.final_project.plantidentifier.ContactActivity"
+            android:name=".PreferenceActivity"
             android:exported="true" />
         <activity
-            android:name="com.final_project.plantidentifier.AboutActivity"
+            android:name=".ContactActivity"
             android:exported="true" />
         <activity
-            android:name="com.final_project.plantidentifier.dataUtils.MyFlowerInfo"
-            android:exported="true"
-            android:parentActivityName="com.final_project.plantidentifier.MyPlantsActivity" />
+            android:name=".AboutActivity"
+            android:exported="true" />
         <activity
-            android:name="com.final_project.plantidentifier.dataUtils.AddPlantActivity"
-            android:exported="false" />
-        <activity
-            android:name="com.final_project.plantidentifier.CameraActivity"
+            android:name=".dataUtils.MyFlowerInfo"
             android:exported="true"
-            android:parentActivityName="com.final_project.plantidentifier.MainActivity">
+            android:parentActivityName=".MyPlantsActivity" />
+        <activity
+            android:name=".dataUtils.AddPlantActivity"
+            android:exported="true" />
+        <activity
+            android:name=".CameraActivity"
+            android:exported="true"
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.final_project.plantidentifier.MainActivity" />
@@ -85,31 +87,31 @@
         </provider>
 
         <activity
-            android:name="com.final_project.plantidentifier.SearchActivity"
+            android:name=".SearchActivity"
             android:exported="true"
-            android:parentActivityName="com.final_project.plantidentifier.MainActivity">
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.final_project.plantidentifier.MainActivity" />
         </activity>
         <activity
-            android:name="com.final_project.plantidentifier.dataUtils.FlowerInfoPage"
+            android:name=".dataUtils.FlowerInfoPage"
             android:exported="true"
-            android:parentActivityName="com.final_project.plantidentifier.MainActivity">
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.final_project.plantidentifier.MainActivity" />
         </activity>
         <activity
-            android:name="com.final_project.plantidentifier.MyPlantsActivity"
+            android:name=".MyPlantsActivity"
             android:exported="true"
-            android:parentActivityName="com.final_project.plantidentifier.MainActivity">
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.final_project.plantidentifier.MainActivity" />
         </activity>
         <activity
-            android:name="com.final_project.plantidentifier.MainActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -119,7 +121,7 @@
         </activity>
 
         <receiver
-            android:name="com.final_project.plantidentifier.utils.NotificationReceiver"
+            android:name=".utils.NotificationReceiver"
             android:enabled="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />

@@ -2,6 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <item android:id="@+id/preference"
+        android:title="@string/preferences"
+        android:onClick="onPreference"
+        app:showAsAction="never"/>
+
     <item
         android:id="@+id/action_favorite"
         android:title="@string/about_title"

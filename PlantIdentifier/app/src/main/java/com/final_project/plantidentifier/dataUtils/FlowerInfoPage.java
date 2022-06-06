@@ -16,8 +16,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.final_project.plantidentifier.AboutActivity;
+import com.final_project.plantidentifier.CameraActivity;
 import com.final_project.plantidentifier.ContactActivity;
 import com.final_project.plantidentifier.MainActivity;
+import com.final_project.plantidentifier.PreferenceActivity;
 import com.final_project.plantidentifier.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -108,6 +110,11 @@ public class FlowerInfoPage extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onPreference(MenuItem menuItem){
+        Intent intent = new Intent(this, PreferenceActivity.class);
+        startActivity(intent);
+    }
+
     private void fillInfo(){
         Intent i = getIntent();
         try {
@@ -130,10 +137,10 @@ public class FlowerInfoPage extends AppCompatActivity {
         }
         try {
             mImg = i.getParcelableExtra("img");
-            mIvFlower.setImageBitmap(Bitmap.createScaledBitmap(mImg, 250, 250, true));
+            mIvFlower.setImageBitmap(Bitmap.createScaledBitmap(mImg, 450, 450, true));
         } catch (Exception ignored){
             mImg = BitmapFactory.decodeResource(getResources(), getDefaultImg(mTvName.getText().toString()));
-            mIvFlower.setImageBitmap(Bitmap.createScaledBitmap(mImg, 250, 250, true));
+            mIvFlower.setImageBitmap(Bitmap.createScaledBitmap(mImg, 450, 450, true));
         }
 
     }

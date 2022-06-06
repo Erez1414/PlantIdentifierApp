@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,6 +17,8 @@ import android.widget.Toast;
 
 import com.final_project.plantidentifier.AboutActivity;
 import com.final_project.plantidentifier.ContactActivity;
+import com.final_project.plantidentifier.MainActivity;
+import com.final_project.plantidentifier.PreferenceActivity;
 import com.final_project.plantidentifier.R;
 import com.final_project.plantidentifier.data.AppDatabase;
 import com.final_project.plantidentifier.data.PlantEntry;
@@ -94,6 +97,11 @@ public class AddPlantActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onPreference(MenuItem menuItem){
+        Intent intent = new Intent(this, PreferenceActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putInt(INSTANCE_PLANT_ID, mPlantId);
@@ -138,5 +146,14 @@ public class AddPlantActivity extends AppCompatActivity {
             }
         });
         Log.d(TAG, "added entry to database!" + name);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, FlowerInfoPage.class);
+        Log.d(TAG, "!!!!!!!!!!!!!!!!!!!!!!WW!!!!!!!!!!!!!!!!!!!!");
+        intent.putExtra("INFO", plantInfo.toString());
+        intent.putExtra("img", mImg);
+        startActivity(intent);
     }
 }

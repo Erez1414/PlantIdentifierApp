@@ -128,6 +128,11 @@ public class CameraActivity extends AppCompatActivity implements LoaderManager.L
         startActivity(intent);
     }
 
+    public void onPreference(MenuItem menuItem){
+        Intent intent = new Intent(this, PreferenceActivity.class);
+        startActivity(intent);
+    }
+
     public void onClickTakePhoto(View v){
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
@@ -319,5 +324,11 @@ public class CameraActivity extends AppCompatActivity implements LoaderManager.L
     public void onLocationChanged(@NonNull Location location) {
         myLocation[0] = location.getLatitude();
         myLocation[1] = location.getLongitude();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }
