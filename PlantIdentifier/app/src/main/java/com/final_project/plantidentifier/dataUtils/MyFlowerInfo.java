@@ -115,7 +115,7 @@ public class MyFlowerInfo extends AppCompatActivity{
     }
 
     private void fillInfo(){
-        mIvFlower.setImageBitmap(Bitmap.createScaledBitmap(plantEntry.getImg(), 450, 450, true));
+        mIvFlower.setImageBitmap(Bitmap.createScaledBitmap(plantEntry.getImg(), 250, 250, true));
         name = plantEntry.getName();
         type = plantEntry.getType().substring(0, 1).toUpperCase() + plantEntry.getType().substring(1);
         mTvName.setText(name);

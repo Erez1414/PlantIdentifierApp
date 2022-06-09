@@ -137,10 +137,10 @@ public class FlowerInfoPage extends AppCompatActivity {
         }
         try {
             mImg = i.getParcelableExtra("img");
-            mIvFlower.setImageBitmap(Bitmap.createScaledBitmap(mImg, 450, 450, true));
+            mIvFlower.setImageBitmap(Bitmap.createScaledBitmap(mImg, 250, 250, true));
         } catch (Exception ignored){
             mImg = BitmapFactory.decodeResource(getResources(), getDefaultImg(mTvName.getText().toString()));
-            mIvFlower.setImageBitmap(Bitmap.createScaledBitmap(mImg, 450, 450, true));
+            mIvFlower.setImageBitmap(Bitmap.createScaledBitmap(mImg, 250, 250, true));
         }
 
     }
