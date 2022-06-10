@@ -273,7 +273,8 @@ public class CameraActivity extends AppCompatActivity implements LoaderManager.L
     @Override
     public void onLoadFinished(@NonNull Loader<CameraConnection> loader, CameraConnection data) {
         Log.d(TAG, "onLoadFinished!!!!!!!!!!!!!!!! "+data.getRes() + " !!!!!!!!!!!!!!!!!!!");
-        if (null == data.getRes() || !data.getSuccess()) {
+//        boolean kkkkkk = data.getSuccess();
+        if (null == data.getRes() || !data.getSuccess()) {// was in
 //            Toast.makeText(this, getString(R.string.err_server), Toast.LENGTH_LONG).show();
             Log.d(TAG, "onLoadFinished!!!!!!!!!!!!!!!! "+getString(R.string.err_server) + " !!!!!!!!!!!!!!!!!!!");
 //

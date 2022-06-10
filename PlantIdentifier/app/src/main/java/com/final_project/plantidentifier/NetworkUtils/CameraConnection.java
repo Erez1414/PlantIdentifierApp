@@ -97,7 +97,7 @@ public class CameraConnection implements ClientConnection{
                     // This method will block no more than timeoutMs.
                     // If the timeout occurs, SocketTimeoutException is thrown.
 
-                    int timeoutMs = 2000;   // 2 seconds
+                    int timeoutMs = 100;   // 2 seconds was 2000
                     try {
                         sock.connect(sockaddr, timeoutMs);
                         sock.close();
@@ -127,7 +127,7 @@ public class CameraConnection implements ClientConnection{
     }
 
     public boolean getSuccess() {
-        return success && !failed;
+        return success && !(failed && failed_backup);
     }
 
     public boolean isFinished(){
