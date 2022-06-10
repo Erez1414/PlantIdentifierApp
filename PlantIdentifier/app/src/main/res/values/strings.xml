@@ -56,12 +56,15 @@
     <string name="contact_des">Hello Dear user, got feed back? want to request a feature? found a bug? \nPlease contact us and let us know about it.
     </string>
     <string name="email">plantidentifierteam@gmail.com</string>
-    <string name="delete_saved_flower">To delete a saved flower, swipe it!</string>
+    <string name="delete_saved_flower">To delete a saved flower, click on the trashcan!</string>
 
     <!-- Preferences -->
     <string name="notification_instruction">Click the bell to add watering notification!</string>
     <string name="preferences">Preferences</string>
     <string name="show_instructions">    show instructions</string>
+    <string name="location">location</string>
+    <string name="type">type</string>
+    <string name="name">name</string>
 
 
 </resources>

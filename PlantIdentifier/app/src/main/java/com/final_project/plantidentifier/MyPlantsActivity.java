@@ -59,38 +59,38 @@ public class MyPlantsActivity extends AppCompatActivity implements FlowerAdapter
         DividerItemDecoration decoration = new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL);
         mRecyclerView.addItemDecoration(decoration);
 
-        /*
-         Add a touch helper to the RecyclerView to recognize when a user swipes to delete an item.
-         An ItemTouchHelper enables touch behavior (like swipe and move) on each ViewHolder,
-         and uses callbacks to signal when a user is performing these actions.
-         */
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
-            @Override
-            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
-                return false;
-            }
-
-            // Called when a user swipes left or right on a ViewHolder
-            @Override
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
-                AppExecutors.getInstance().diskIO().execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        // COMPLETED (3) get the position from the viewHolder parameter
-                        int position = viewHolder.getAdapterPosition();
-                        List<PlantEntry> tasks = mFlowerAdapter.getPlants();
-                        // COMPLETED (4) Call deleteTask in the taskDao with the task at that position
-
-                        int id = tasks.get(position).getId();
-                        removeNotification(id);
-
-                        mDb.plantDao().deleteTask(tasks.get(position));
-                        // COMPLETED (6) Call retrieveTasks method to refresh the UI
-                        retrievePlants();
-                    }
-                });
-            }
-        }).attachToRecyclerView(mRecyclerView);
+//        /*
+//         Add a touch helper to the RecyclerView to recognize when a user swipes to delete an item.
+//         An ItemTouchHelper enables touch behavior (like swipe and move) on each ViewHolder,
+//         and uses callbacks to signal when a user is performing these actions.
+//         */
+//         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+//            @Override
+//            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+//                return false;
+//            }
+//
+//            // Called when a user swipes left or right on a ViewHolder
+//            @Override
+//            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
+//                AppExecutors.getInstance().diskIO().execute(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        // COMPLETED (3) get the position from the viewHolder parameter
+//                        int position = viewHolder.getAdapterPosition();
+//                        List<PlantEntry> tasks = mFlowerAdapter.getPlants();
+//                        // COMPLETED (4) Call deleteTask in the taskDao with the task at that position
+//
+//                        int id = tasks.get(position).getId();
+//                        removeNotification(id);
+//
+//                        mDb.plantDao().deleteTask(tasks.get(position));
+//                        // COMPLETED (6) Call retrieveTasks method to refresh the UI
+//                        retrievePlants();
+//                    }
+//                });
+//            }
+//        }).attachToRecyclerView(mRecyclerView);
 
         mDb = AppDatabase.getInstance(getApplicationContext());
         noPlantsOnList();
