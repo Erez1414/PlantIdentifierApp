@@ -77,6 +77,8 @@ public class CameraActivity extends AppCompatActivity implements LoaderManager.L
 
     private Bitmap imageBitmap;
 
+    private long startTime;
+
     private LocationManager locationManager;
     private LocationListener locationListener;
     private boolean locationPermission;
@@ -107,6 +109,7 @@ public class CameraActivity extends AppCompatActivity implements LoaderManager.L
         locationPermission = (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED);
         if (locationPermission) {
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
         }
         myLocation = new double[] {-33.8523341, 151.2106085}; // default place in (Sydney, Australia)
     }
@@ -142,6 +145,7 @@ public class CameraActivity extends AppCompatActivity implements LoaderManager.L
     }
 
     public void onClickUploadPhoto(View v){
+        startTime = System.currentTimeMillis();
         if (mImgUri == null){
             Toast.makeText(this, getString(R.string.err_no_photo_selected), Toast.LENGTH_LONG).show();
             return;
@@ -287,6 +291,7 @@ public class CameraActivity extends AppCompatActivity implements LoaderManager.L
             Toast.makeText(this, "Flower is " + flower + "\nfor more info please connect to internet",
                     Toast.LENGTH_LONG).show();
             Log.d(TAG, "onLoadFinished!!!!!!! flower work !!!!!!!!! "+flower + " !!!!!!!!!!!!!!!!!!!");
+            Log.d(TAG, "response time is :" + (System.currentTimeMillis() - startTime) + "@@@@@@@@@@@@@@@@@@@@@");
             onBackPressed();
             return;
         } else {
@@ -311,6 +316,7 @@ public class CameraActivity extends AppCompatActivity implements LoaderManager.L
             intent.putExtra("img", imageBitmap);
             intent.putExtra("location", myLocation);
             Log.d(TAG, "cur location: " + Arrays.toString(myLocation));
+            Log.d(TAG, "response time is :" + (System.currentTimeMillis() - startTime) + "@@@@@@@@@@@@@@@@@@@@@");
             startActivity(intent);
         }
     }

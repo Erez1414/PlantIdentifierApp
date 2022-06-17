@@ -44,7 +44,7 @@ public class SearchConnection implements ClientConnection{
         Request request = new Request
                 .Builder()
                 .get()
-                .url(ipString + "search/" + searchWord)
+                .url(ipStringBackup + "search/" + searchWord)
                 .build();
 
         okHttpClient.newCall(request).enqueue(new Callback() {

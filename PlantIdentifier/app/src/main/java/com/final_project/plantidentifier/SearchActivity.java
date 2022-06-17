@@ -1,11 +1,19 @@
 package com.final_project.plantidentifier;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.AsyncTaskLoader;
 import androidx.loader.content.Loader;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -22,7 +30,9 @@ import com.final_project.plantidentifier.dataUtils.FlowerInfoPage;
 
 import org.json.JSONObject;
 
-public class SearchActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<SearchConnection> {
+import java.util.Arrays;
+
+public class SearchActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<SearchConnection>, LocationListener {
 
     private EditText mEt;
 
@@ -32,6 +42,11 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
     private JSONObject mCurData;
     private static final int SEARCH_LOADER_ID = 1;
     private boolean firstTime;
+
+    private LocationManager locationManager;
+    private LocationListener locationListener;
+    private boolean locationPermission;
+    private double[] myLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +60,18 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
         mTv = (TextView) findViewById(R.id.tv_result_activity_search);
 
         firstTime = true;
+
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            String[] permissions = {Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION};
+            ActivityCompat.requestPermissions(this, permissions, 1);
+        }
+        locationPermission = (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED);
+        if (locationPermission) {
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
+        }
+        myLocation = new double[] {-33.8523341, 151.2106085}; // default place in (Sydney, Australia)
 
     }
 
@@ -133,6 +160,7 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
             }
             Intent intent = new Intent(this, FlowerInfoPage.class);
             intent.putExtra("INFO", mCurData.toString());
+            intent.putExtra("location", myLocation);
             startActivity(intent);
         }
     }
@@ -150,5 +178,12 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
     public void onBackPressed() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onLocationChanged(@NonNull Location location) {
+        myLocation[0] = location.getLatitude();
+        myLocation[1] = location.getLongitude();
+        Log.d(TAG, "cur location: " + Arrays.toString(myLocation));
     }
 }
